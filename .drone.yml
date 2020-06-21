@@ -25,11 +25,11 @@ depends_on:
 steps:
 - name: Pulling
   commands:
-  - docker pull ch1ch1/squid
+   - docker pull ch1ch1/squid
 - name: Updating
   commands:
   - service docker-squid restart
 - name: Cleaning
   commands:
-  - wait 10
-  - docker system prune --all -f
+   - sleep 10
+   - docker system prune --all -f
