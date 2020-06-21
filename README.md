@@ -7,5 +7,4 @@
 A docker Squid container Based on [Docker Alpine Official Image](https://hub.docker.com/_/alpine)
 
 Alpine 3.12
-
 Squid 4.11
