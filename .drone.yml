@@ -31,4 +31,5 @@ steps:
   - service docker-squid restart
 - name: Cleaning
   commands:
+  - wait 10
   - docker system prune --all -f
