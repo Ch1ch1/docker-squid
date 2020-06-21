@@ -1,0 +1,15 @@
+kind: pipeline
+type: docker
+name: Building
+
+steps:
+- name: build & push
+  image: plugins/docker
+  settings:
+    repo: ch1ch1/squid
+    tags:
+    - alpine3.12
+    - latest
+    username: ch1ch1
+    password:
+      from_secret: dockerhub-password
