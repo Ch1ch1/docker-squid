@@ -1,6 +1,6 @@
 kind: pipeline
 type: docker
-name: Building
+name: Building..
 
 steps:
 - name: build & push
@@ -16,12 +16,12 @@ steps:
 ----
 kind: pipeline
 type: exec
-name: Publish
+name: Publishing..
 
 clone:
   disable: true
 depends_on:
-  - Building
+  - Building..
 steps:
 - name: Pull
   commands:
