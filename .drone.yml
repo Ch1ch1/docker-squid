@@ -13,7 +13,7 @@ steps:
     username: ch1ch1
     password:
       from_secret: dockerhub-password
-
+--
 kind: pipeline
 type: exec
 name: Publish
