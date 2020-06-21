@@ -23,7 +23,6 @@ steps:
 - name: Pull
   commands:
   - docker pull ch1ch1/squid
-steps:
 - name: Update
   commands:
   - service docker-squid restart
