@@ -19,6 +19,11 @@ kind: pipeline
 type: exec
 name: Publish
 
+clone:
+  disable: true
+trigger:
+  status:
+  - success
 steps:
 - name: Pull
   commands:
