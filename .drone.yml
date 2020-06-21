@@ -13,3 +13,17 @@ steps:
     username: ch1ch1
     password:
       from_secret: dockerhub-password
+
+---
+kind: pipeline
+type: exec
+name: Publish
+
+steps:
+- name: Pull
+  commands:
+  - docker pull ch1ch1/squid
+steps:
+- name: Update
+  commands:
+  - service docker-squid restart
