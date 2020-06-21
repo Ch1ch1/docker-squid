@@ -23,13 +23,13 @@ clone:
 depends_on:
   - Building..
 steps:
-- name: Pulling
+- name: Pull
   commands:
    - docker pull ch1ch1/squid
-- name: Updating
+- name: Update
   commands:
   - service docker-squid restart
-- name: Cleaning
+- name: Clean
   commands:
    - sleep 10
    - docker system prune --all -f
