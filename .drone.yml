@@ -1,45 +1,10 @@
 kind: pipeline
 type: docker
-name: Building..
+name: default
 
 steps:
-- name: build & push
-  image: plugins/docker
-  settings:
-    repo: ch1ch1/squid
-    tags:
-    - alpine3.12
-    - latest
-    username: ch1ch1
-    password:
-      from_secret: dockerhub-password
-----
-kind: pipeline
-type: exec
-name: Publishing..
-
-clone:
-  disable: true
-depends_on:
-  - Building..
-steps:
-- name: Pull
+- name: build
+  image: golang:1.12
   commands:
-   - docker pull ch1ch1/squid
-- name: Update
-  commands:
-  - service docker-squid restart
-----
-kind: pipeline
-type: exec
-name: Cleaning the runner..
-clone:
-  disable: true
-depends_on:
-  - Publishing..
-
-steps:
-- name: reclaim space
-  commands:
-   - sleep 10
-   - docker system prune --all -f
+  - go build
+  - go test
