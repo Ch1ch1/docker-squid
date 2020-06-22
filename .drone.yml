@@ -17,7 +17,6 @@ steps:
 kind: pipeline
 type: exec
 name: Publishing..
-
 clone:
   disable: true
 depends_on:
@@ -41,5 +40,5 @@ depends_on:
 steps:
 - name: reclaim space
   commands:
-   - sleep 10
+   - sleep 5
    - docker system prune --all -f
