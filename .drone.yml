@@ -18,9 +18,6 @@ steps:
 kind: pipeline
 type: exec
 name: Publishing..
-node:
-  drone: ch1
-  drone: nimi
 clone:
   disable: true
 depends_on:
