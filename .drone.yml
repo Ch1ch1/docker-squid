@@ -1,6 +1,9 @@
 kind: pipeline
 type: docker
 name: Building..
+node:
+  drone: ch1
+  drone: nimi
 
 steps:
 - name: build & push
@@ -15,10 +18,14 @@ steps:
 kind: pipeline
 type: exec
 name: Publishing..
+node:
+  drone: ch1
+  drone: nimi
 clone:
   disable: true
 depends_on:
   - Building..
+
 steps:
 - name: Pull
   commands:
