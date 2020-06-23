@@ -7,7 +7,7 @@ steps:
   image: plugins/docker
   settings:
     repo: ch1ch1/squid
-    tags: [ "alpine3.11","latest" ]
+    tags: [ "alpine3.12","latest" ]
     username: ch1ch1
     password:
       from_secret: dockerhub-password
