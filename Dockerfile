@@ -1,4 +1,4 @@
-FROM alpine:3.12
+FROM alpine:3.11
 
 RUN apk update \
     && apk add squid \
@@ -8,4 +8,4 @@ RUN apk update \
 COPY start-squid.sh /usr/local/bin/
 RUN chmod +x  /usr/local/bin/start-squid.sh
 
-ENTRYPOINT ["/usr/local/bin/start-squid.sh"]  
+ENTRYPOINT ["/usr/local/bin/start-squid.sh"]
