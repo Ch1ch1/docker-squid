@@ -26,17 +26,3 @@ steps:
 - name: Update
   commands:
   - service docker-squid restart
-----
-kind: pipeline
-type: exec
-name: Cleaning the runner..
-clone:
-  disable: true
-depends_on:
-  - Publishing..
-
-steps:
-- name: reclaim space
-  commands:
-   - sleep 5
-   - docker system prune --all -f
