@@ -47,6 +47,8 @@ steps:
 
 - name: Alerting
   image: plugins/webhook
+  node:
+    drone: ch1
   settings:
     urls:
      from_secret: webhookgotify
