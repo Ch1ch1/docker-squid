@@ -29,10 +29,7 @@ clone:
 steps:
 - name: Pull
   commands:
-   - docker pull ch1ch1/squid
-- name: Update
-  commands:
-  - service docker-squid restart
+   - /var/tmp/updatesquid
 ---
 kind: pipeline
 type: docker
