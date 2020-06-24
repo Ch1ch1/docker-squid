@@ -33,3 +33,32 @@ steps:
 - name: Update
   commands:
   - service docker-squid restart
+---
+kind: pipeline
+type: docker
+name: Alerting..
+node:
+  drone: ch1
+  drone: nimi
+depends_on:
+    - Building..
+    - Updating..
+clone:
+  disable: true
+
+steps:
+
+- name: Alerting
+  image: plugins/webhook
+  settings:
+    urls:
+     from_secret: webhookgotify
+    content_type: application/json
+    template: |
+      {
+       "message": "{{ build.status }}.",
+       "priority": 5,
+       "title": "Squid build"
+      }
+  when:
+    status: [ success, failure ]
