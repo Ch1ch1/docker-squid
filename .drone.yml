@@ -17,11 +17,14 @@ steps:
 ----
 kind: pipeline
 type: exec
-name: Publishing..
-clone:
-  disable: true
+name: Updating..
 depends_on:
   - Building..
+trigger:
+  status:
+    - success
+clone:
+  disable: true
 
 steps:
 - name: Pull
