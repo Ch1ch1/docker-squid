@@ -27,7 +27,7 @@ clone:
   disable: true
 
 steps:
-- name: Pull
+- name: update & restart service
   commands:
    - /var/tmp/updatesquid
 ---
