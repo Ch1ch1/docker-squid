@@ -18,6 +18,8 @@ steps:
 kind: pipeline
 type: exec
 name: Updating..
+node:
+  drone: ch1
 depends_on:
   - Building..
 trigger:
@@ -47,8 +49,6 @@ steps:
 
 - name: Alerting
   image: plugins/webhook
-  node:
-    drone: ch1
   settings:
     urls:
      from_secret: webhookgotify
