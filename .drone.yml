@@ -58,4 +58,4 @@ steps:
        "title": "Squid build"
       }
   when:
-    status: [ success, failure ]
+    status: [ success, failure ] 
