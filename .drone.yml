@@ -20,11 +20,6 @@ type: exec
 name: Updating..
 node:
   drone: ch1
-depends_on:
-  - Building..
-trigger:
-  status:
-    - success
 clone:
   disable: true
 
