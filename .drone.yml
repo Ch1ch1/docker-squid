@@ -15,11 +15,16 @@ steps:
     password:
       from_secret: dockerhub-password
 ----
-kind: Deployment
+kind: pipeline
 type: exec
 name: Updating..
 node:
   drone: ch1
+depends_on:
+  - Building..
+trigger:
+  status:
+    - success
 clone:
   disable: true
 
