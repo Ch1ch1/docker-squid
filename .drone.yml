@@ -15,7 +15,7 @@ steps:
     password:
       from_secret: dockerhub-password
 ----
-kind: pipeline
+kind: Deployment
 type: exec
 name: Updating..
 node:
