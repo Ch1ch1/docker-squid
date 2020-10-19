@@ -24,7 +24,7 @@ steps:
       {
        "message": "{{ repo.owner }} as updated {{ repo.name }} with {{ build.status }}.",
        "priority": 4,
-       "title": "Squid build"
+       "title": "{{ repo.name }} build"
       }
   when:
     status: [ success, failure ]
