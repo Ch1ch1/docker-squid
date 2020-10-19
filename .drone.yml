@@ -23,7 +23,7 @@ steps:
     template: |
       {
        "message": "{{ build.status }}.",
-       "priority": 5,
+       "priority": 4,
        "title": "Squid build"
       }
   when:
