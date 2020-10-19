@@ -14,3 +14,17 @@ steps:
     username: ch1ch1
     password:
       from_secret: dockerhub-password
+- name: notification
+  image: plugins/webhook
+  settings:
+    urls:
+     from_secret: webhookgotify
+    content_type: application/json
+    template: |
+      {
+       "message": "{{ build.status }}.",
+       "priority": 5,
+       "title": "Squid build"
+      }
+  when:
+    status: [ success, failure ]
