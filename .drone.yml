@@ -14,22 +14,17 @@ steps:
     username: ch1ch1
     password:
       from_secret: dockerhub-password
-- name: gotify
-  image: fredix/arm64v8-alpine-drone-gotify
+- name: notification
+  image: plugins/webhook
   settings:
-    gotifytoken:
-      from_secret: plugin_gotifytoken
-    gotifyendpoint:
-      from_secret: plugin_gotifyendpoint
-    gotifytitle:
-      from_secret: plugin_gotifytitle
-    gotifypriority:
-      from_secret: plugin_gotifypriority
-    message: >
-      {{#success build.status}}
-        build {{build.number}} succeeded on {{repo.name}}. Good job {{build.author}}  {{build.link}}
-      {{else}}
-        build {{build.number}} failed on {{repo.name}}. Fix me please {{build.author}}  {{build.link}}
-      {{/success}}
+    urls:
+     from_secret: webhookgotify
+    content_type: application/json
+    template: |
+      {
+       "message": "{{ repo.owner }} as updated {{ repo.name }} with {{ build.status }}.",
+       "priority": 4,
+       "title": "Squid build"
+      }
   when:
     status: [ success, failure ]
