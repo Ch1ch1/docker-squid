@@ -4,14 +4,13 @@ type: docker
 name: Building..
 node:
   drone: ch1
-  drone: nimi
 
 steps:
 - name: build & push
   image: plugins/docker
   settings:
     repo: ch1ch1/squid
-    tags: [ "alpine3.13","latest" ]
+    tags: [ "alpine3.14","latest" ]
     username: ch1ch1
     password:
       from_secret: dockerhub-password
@@ -31,6 +30,6 @@ steps:
     status: [ success, failure ]
 ---
 kind: signature
-hmac: 324716d00645f6b7ed950897f1f731418550df90f3016dad425f15a6ac546f94
+hmac: 6be87773e75c0d47c7b04b0b7abab3d2199e91241ab8596881789ab6ece81c6a
 
 ...
