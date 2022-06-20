@@ -10,7 +10,7 @@ steps:
   image: plugins/docker
   settings:
     repo: ch1ch1/squid
-    tags: [ "alpine3.14","latest" ]
+    tags: [ "3.16","latest" ]
     username: ch1ch1
     password:
       from_secret: dockerhub_token
@@ -30,6 +30,6 @@ steps:
     status: [ success, failure ]
 ---
 kind: signature
-hmac: b546adaf3a4f9ef0b81c3bbea4dfd839b8d9c6712299833cebae43a562404bac
+hmac: dfb5ce1586f92918a62c4f64c9f74d77d57e9efa92e52e32633268d1865bc82a
 
 ...
