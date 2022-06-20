@@ -4,5 +4,5 @@
 
 A docker Squid container Based on [Docker Alpine Official Image](https://hub.docker.com/_/alpine)
 
-Alpine 3.14  
-Squid 4.11
+Alpine 3.16  
+Squid 5.0.6
