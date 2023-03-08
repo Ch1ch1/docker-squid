@@ -38,7 +38,7 @@ steps:
       DOCKER_PASS:
         from_secret: dockerhub_token
       DOCKER_USER: ch1ch1
-      PUSHRM_FILE: README.md
+      PUSHRM_FILE: /drone/src/README.md
       PUSHRM_SHORT: Alpine linux squid container
       PUSHRM_TARGET: ch1ch1/squid
 
@@ -59,6 +59,6 @@ steps:
 
 ---
 kind: signature
-hmac: d1c940edb77a4e20ee2e378fe08e5a72c42db9b48c8a1be8e5d6530bbd875fef
+hmac: 76b5cdbaaf2c064ef4d301df64f07f1ed02acc52230beb2d65dbce0c6843b75a
 
 ...
