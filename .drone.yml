@@ -77,7 +77,7 @@ steps:
       repo: ch1ch1/squid
       tags:
         - latest
-        - ${DRONE_TAG}-${DRONE_STAGE_OS}-alpine
+        - ${DRONE_TAG}-alpine-${DRONE_STAGE_OS}
 
   - name: push README dockerhub
     image: chko/docker-pushrm:1
@@ -106,6 +106,6 @@ steps:
 
 ---
 kind: signature
-hmac: ad462484f3e9b8e289efc1286f3b151ca779cd3bc893cfa21108f90e0a0e97c0
+hmac: 65d31de8253916135ea89adf15cfd79dcd803380beae4737206e2e20b7274b91
 
 ...
