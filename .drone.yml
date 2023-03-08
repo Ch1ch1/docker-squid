@@ -1,6 +1,53 @@
 ---
 kind: pipeline
 type: docker
+name: Building dev
+
+platform:
+  os: linux
+  arch: amd64
+
+node:
+  drone: ch1
+
+trigger:
+  event:
+    exclude:
+      - tag
+
+steps:
+  - name: docker
+    image: thegeeklab/drone-docker-buildx:23
+    privileged: true
+    settings:
+      username: ch1ch1
+      platforms:
+        - linux/amd64
+        - linux/arm64
+        - linux/arm/v7
+      password:
+        from_secret: dockerhub_token
+      repo: ch1ch1/squid
+      tags:
+        - ${DRONE_STAGE_OS}-alpine-dev
+
+  - name: notification
+    image: plugins/webhook
+    settings:
+      urls:
+        from_secret: webhookgotify
+      content_type: application/json
+      template: |
+        {
+         "message": "{{ repo.owner }} as updated {{ repo.name }} with {{ build.status }}.",
+         "priority": 4,
+         "title": "{{ repo.name }} build"
+        }
+    when:
+      status: [success, failure]
+---
+kind: pipeline
+type: docker
 name: Building
 
 platform:
@@ -20,19 +67,19 @@ steps:
     image: thegeeklab/drone-docker-buildx:23
     privileged: true
     settings:
-      labels: 
       username: ch1ch1
       platforms:
         - linux/amd64
         - linux/arm64
+        - linux/arm/v7
       password:
         from_secret: dockerhub_token
       repo: ch1ch1/squid
       tags:
         - latest
-        - ${DRONE_STAGE_OS}-alpine-${DRONE_TAG}
+        - ${DRONE_TAG}-${DRONE_STAGE_OS}-alpine
 
-  - name: pushrm-dockerhub
+  - name: push README dockerhub
     image: chko/docker-pushrm:1
     environment:
       DOCKER_PASS:
@@ -59,6 +106,6 @@ steps:
 
 ---
 kind: signature
-hmac: 76b5cdbaaf2c064ef4d301df64f07f1ed02acc52230beb2d65dbce0c6843b75a
+hmac: ad462484f3e9b8e289efc1286f3b151ca779cd3bc893cfa21108f90e0a0e97c0
 
 ...
