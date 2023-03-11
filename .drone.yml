@@ -21,6 +21,7 @@ steps:
     privileged: true
     settings:
       username: ch1ch1
+      provenance: true
       platforms:
         - linux/amd64
         - linux/arm64
@@ -106,6 +107,6 @@ steps:
 
 ---
 kind: signature
-hmac: e7b95e46ace149c8d458cde60ac6299d1b4ada73a45de506c12e1d0fd98aea70
+hmac: 876ed6f8d39cadb986cc7eaed418ef094cfa8bc667586c45abdf9cc3692af24c
 
 ...
