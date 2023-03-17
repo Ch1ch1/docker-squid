@@ -1,4 +1,5 @@
 FROM alpine:3.17
+ARG S6_OVERLAY_VERSION=3.1.4.1
 
 RUN apk update \
     && apk add curl squid \
