@@ -2,7 +2,7 @@ FROM alpine:3.17
 ARG S6_OVERLAY_VERSION=3.1.4.1
 
 RUN apk update \
-    && apk add curl xz-utils squid \
+    && apk add curl xz squid \
     && rm -rf /var/cache/apk/*
 
 HEALTHCHECK --interval=60s --timeout=15s --start-period=180s \
