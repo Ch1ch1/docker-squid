@@ -1,7 +1,7 @@
 FROM alpine:3.17
 
 RUN apk update \
-    && apk add tini curl squid \
+    && apk add curl squid \
     && rm -rf /var/cache/apk/*
 
 HEALTHCHECK --interval=60s --timeout=15s --start-period=180s \
@@ -10,5 +10,10 @@ HEALTHCHECK --interval=60s --timeout=15s --start-period=180s \
 COPY start-squid.sh /usr/local/bin/
 RUN chmod +x  /usr/local/bin/start-squid.sh
 
-ENTRYPOINT ["/sbin/tini", "--"]
 CMD ["/usr/local/bin/start-squid.sh"]
+
+ADD https://github.com/just-containers/s6-overlay/releases/download/v${S6_OVERLAY_VERSION}/s6-overlay-noarch.tar.xz /tmp
+RUN tar -C / -Jxpf /tmp/s6-overlay-noarch.tar.xz
+ADD https://github.com/just-containers/s6-overlay/releases/download/v${S6_OVERLAY_VERSION}/s6-overlay-x86_64.tar.xz /tmp
+RUN tar -C / -Jxpf /tmp/s6-overlay-x86_64.tar.xz
+ENTRYPOINT ["/init"]
