@@ -1,8 +1,7 @@
 FROM alpine:3.17
 
 RUN apk update \
-    && apk add squid \
-    && apk add curl \
+    && apk add tini curl squid \
     && rm -rf /var/cache/apk/*
 
 HEALTHCHECK --interval=60s --timeout=15s --start-period=180s \
@@ -11,4 +10,5 @@ HEALTHCHECK --interval=60s --timeout=15s --start-period=180s \
 COPY start-squid.sh /usr/local/bin/
 RUN chmod +x  /usr/local/bin/start-squid.sh
 
-ENTRYPOINT ["/usr/local/bin/start-squid.sh"]
+ENTRYPOINT ["/sbin/tini", "--"]
+CMD ["/usr/local/bin/start-squid.sh"]
