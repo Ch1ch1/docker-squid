@@ -1,6 +1,6 @@
 FROM alpine:3.17
 
-COPY --from=crazymax/alpine-s6-dist:3.17 / /
+COPY --from=crazymax/alpine-s6-dist:3.17-edge / /
 
 RUN apk update \
     && apk add curl xz squid \
