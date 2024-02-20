@@ -1,5 +1,5 @@
 # docker-squid
 
-![Build Status](https://drone.ch1.ninja/api/badges/Ch1ch1/docker-squid/status.svg)
+[![status-badge](https://ci.ch1.ninja/api/badges/1/status.svg)](https://ci.ch1.ninja/repos/1)
 
 Docker Squid Alpine Linux with s6 overlay.
