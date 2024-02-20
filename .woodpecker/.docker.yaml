@@ -8,7 +8,6 @@ when:
 variables:
   - &buildx_plugin 'docker.io/woodpeckerci/plugin-docker-buildx:3.1.0'
   - &platforms_alpine 'linux/arm/v6,linux/arm/v7,linux/arm64/v8,linux/amd64,linux/ppc64le'
-  - &platforms_debian 'linux/arm/v6,linux/arm/v7,linux/arm64/v8,linux/amd64,linux/ppc64le'
   - publish_logins: &publish_logins
       - registry: https://index.docker.io/v1/
         username: ch1ch1
@@ -17,23 +16,17 @@ variables:
   - &publish_repos 'ch1ch1/squid'
 
 steps:
-  build-squid-alpine-dry-run:
+  build-squid-dev:
     image: *buildx_plugin
     settings:
-      dry-run: true
+      repo: *publish_repos
       dockerfile: Dockerfile
       platforms: *platforms_alpine
-      tag: [latest, alpine-3.19]
-  scan_vuln:
-    depends_on:
-      - build-squid-alpine-dry-run
-    image: aquasec/trivy:latest
-    commands:
-      # use any trivy command, if exit code is 0 woodpecker marks it as passed, else it assumes it failed
-      - trivy image --exit-code 0 --no-progress ch1ch1/squid
-  build-squid-alpine:
-    depends_on:
-      - scan_vuln
+      tag: [latest-dev, alpine-3.19]
+      logins: *publish_logins
+    when:
+      - event: [pull_request, push]
+  build-squid:
     image: *buildx_plugin
     settings:
       repo: *publish_repos
@@ -42,4 +35,4 @@ steps:
       tag: [latest, alpine-3.19]
       logins: *publish_logins
     when:
-      event: push
+      - event: tag
