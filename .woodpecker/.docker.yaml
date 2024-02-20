@@ -23,5 +23,5 @@ steps:
       repo: *publish_repos
       dockerfile: Dockerfile
       platforms: *platforms_alpine
-      tag: [next-alpine, 'next-${CI_COMMIT_SHA:0:10}-alpine']
+      tag: [latest, alpine-3.19]
       logins: *publish_logins
