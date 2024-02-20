@@ -33,7 +33,7 @@ steps:
       repo: *publish_repos
       dockerfile: Dockerfile
       platforms: *platforms_alpine
-      tag: [latest-alpine, '${CI_COMMIT_TAG}-alpine']
+      tag: [latest, '${CI_COMMIT_TAG}-alpine']
       logins: *publish_logins
     when:
       - event: tag
