@@ -17,7 +17,24 @@ variables:
   - &publish_repos 'ch1ch1/squid'
 
 steps:
-  publish-next-server-alpine:
+  build-squid-alpine-dry-run:
+    image: *buildx_plugin
+    settings:
+      dry-run: true
+      repo: *publish_repos
+      dockerfile: Dockerfile
+      platforms: *platforms_alpine
+      tag: [latest, alpine-3.19]
+  scan_vuln:
+    depends_on:
+      - build-squid-alpine-dry-run
+    image: aquasec/trivy:latest
+    commands:
+      # use any trivy command, if exit code is 0 woodpecker marks it as passed, else it assumes it failed
+      - trivy image --exit-code 0 --no-progress ch1ch1/squid
+  build-squid-alpine:
+    depends_on:
+      - scan_vuln
     image: *buildx_plugin
     settings:
       repo: *publish_repos

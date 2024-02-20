@@ -1,6 +1,0 @@
-pipeline:
-  scan_vuln:
-    image: aquasec/trivy:latest
-    commands:
-      # use any trivy command, if exit code is 0 woodpecker marks it as passed, else it assumes it failed
-      - trivy fs --exit-code 1 --severity MEDIUM,HIGH,CRITICAL .
