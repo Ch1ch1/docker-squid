@@ -16,23 +16,26 @@ variables:
   - &publish_repos 'ch1ch1/squid'
 
 steps:
+  clone:
+    image: woodpeckerci/plugin-git
   build-squid-dev:
     image: *buildx_plugin
     settings:
       repo: *publish_repos
       dockerfile: Dockerfile
       platforms: *platforms_alpine
-      tag: [latest-dev, alpine-3.19]
+      tag: latest-dev
       logins: *publish_logins
     when:
       - event: [pull_request, push]
+
   build-squid:
     image: *buildx_plugin
     settings:
       repo: *publish_repos
       dockerfile: Dockerfile
       platforms: *platforms_alpine
-      tag: [latest, alpine-${CI_COMMIT_TAG}]
+      tag: [latest-alpine, '${CI_COMMIT_TAG}-alpine']
       logins: *publish_logins
     when:
       - event: tag
