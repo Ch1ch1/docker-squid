@@ -1,0 +1,27 @@
+when:
+  - event: [pull_request, tag]
+  - event: push
+    branch:
+      - ${CI_REPO_DEFAULT_BRANCH}
+      - renovate/*
+
+variables:
+  - &buildx_plugin 'docker.io/woodpeckerci/plugin-docker-buildx:3.1.0'
+  - &platforms_alpine 'linux/arm/v6,linux/arm/v7,linux/arm64/v8,linux/amd64,linux/ppc64le'
+  - &platforms_debian 'linux/arm/v6,linux/arm/v7,linux/arm64/v8,linux/amd64,linux/ppc64le'
+  - publish_logins: &publish_logins # Default DockerHub login
+      - registry: https://index.docker.io/v1/
+        username: ch1ch1
+        password:
+          from_secret: docker_token
+- &publish_repos 'ch1ch1/squid'
+
+steps:
+  publish-next-server-alpine:
+    image: *buildx_plugin
+    settings:
+      repo: *publish_repos
+      dockerfile: Dockerfile
+      platforms: *platforms_alpine
+      tag: [next-alpine, 'next-${CI_COMMIT_SHA:0:10}-alpine']
+      logins: *publish_logins
