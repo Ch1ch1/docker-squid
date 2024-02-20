@@ -16,8 +16,6 @@ variables:
   - &publish_repos 'ch1ch1/squid'
 
 steps:
-  clone:
-    image: woodpeckerci/plugin-git
   build-squid-dev:
     image: *buildx_plugin
     settings:
