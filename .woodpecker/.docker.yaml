@@ -11,7 +11,7 @@ variables:
   - &platforms_debian 'linux/arm/v6,linux/arm/v7,linux/arm64/v8,linux/amd64,linux/ppc64le'
   - publish_logins: &publish_logins # Default DockerHub login
       - registry: https://index.docker.io/v1/
-        username: ch1ch1
+        username: ${CI_REPO_OWNER}
         password:
           from_secret: docker_token
   - &publish_repos 'ch1ch1/squid'
