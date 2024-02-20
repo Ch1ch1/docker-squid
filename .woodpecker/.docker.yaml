@@ -14,7 +14,7 @@ variables:
         username: ch1ch1
         password:
           from_secret: docker_token
-- &publish_repos 'ch1ch1/squid'
+  - &publish_repos 'ch1ch1/squid'
 
 steps:
   publish-next-server-alpine:
