@@ -15,9 +15,6 @@
       "matchDatasources": [
         "docker"
       ],
-      "matchPackageNames": [
-        "foo/bar"
-      ],
       "versioning": "semver"
     }
   ]
