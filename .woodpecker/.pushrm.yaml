@@ -22,4 +22,4 @@ steps:
       DOCKER_PASS: 
         - from_secret: docker_token
     commands:
-       - docker-pushrm
+       - /bin/true
