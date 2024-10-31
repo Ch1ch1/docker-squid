@@ -1,20 +1,24 @@
 {
-    "$schema": "https://docs.renovatebot.com/renovate-schema.json",
-    "extends": [
-      "config:recommended",
-      ":dependencyDashboard",
-      ":semanticCommits",
-      ":semanticCommitScope(deps)",
-      "docker:enableMajor",
-      ":masterIssue",
-      "group:linters",
-      ":maintainLockFilesWeekly"
-    ],  
-    "packageRules": [
-      {
-        "matchDatasources": ["docker"],
-        "matchPackageNames": ["foo/bar"],
-        "versioning": "semver"
-      }
-    ]
-  }
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "extends": [
+    "config:recommended",
+    ":dependencyDashboard",
+    ":semanticCommits",
+    ":semanticCommitScope(deps)",
+    "docker:enableMajor",
+    ":dependencyDashboard",
+    "group:linters",
+    ":maintainLockFilesWeekly"
+  ],
+  "packageRules": [
+    {
+      "matchDatasources": [
+        "docker"
+      ],
+      "matchPackageNames": [
+        "foo/bar"
+      ],
+      "versioning": "semver"
+    }
+  ]
+}
