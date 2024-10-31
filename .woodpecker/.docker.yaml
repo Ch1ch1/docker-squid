@@ -25,6 +25,7 @@ steps:
       platforms: *platforms_alpine
       tag: latest-dev
       logins: *publish_logins
+      dry-run: true
     when:
       - event: [pull_request, push]
 
