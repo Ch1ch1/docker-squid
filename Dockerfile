@@ -1,4 +1,4 @@
-FROM alpine:3.21
+FROM alpine:3.22
 
 COPY --from=crazymax/alpine-s6-dist:3.20 / /
 
