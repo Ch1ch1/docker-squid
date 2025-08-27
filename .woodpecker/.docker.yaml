@@ -17,7 +17,7 @@ variables:
   - &publish_repos 'ch1ch1/squid'
 
 steps:
-  build-squid-dev:
+  - name: build-squid-dev:
     image: *buildx_plugin
     settings:
       repo: *publish_repos
@@ -29,7 +29,7 @@ steps:
     when:
       - event: [pull_request, push]
 
-  build-squid:
+  - name: build-squid:
     image: *buildx_plugin
     settings:
       repo: *publish_repos
