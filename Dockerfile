@@ -1,9 +1,9 @@
 FROM alpine:3.22
 
-COPY --from=crazymax/alpine-s6-dist:3.20 / /
+COPY --from=crazymax/alpine-s6 / /
 
 RUN apk update \
-    && apk add curl xz squid \
+    && apk add --no-cache curl xz squid \
     && rm -rf /var/cache/apk/*
 
 HEALTHCHECK --interval=60s --timeout=15s --start-period=180s \
